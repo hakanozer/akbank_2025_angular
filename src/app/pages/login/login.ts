@@ -17,7 +17,10 @@ export class Login {
   password = '123456';
 
   constructor(private api: Api, private securtext: Securtext) {
-    console.log('Login component initialized');
+    const isLoginedIn = !!localStorage.getItem('token');
+    if (isLoginedIn) {
+      window.location.replace("/dashboard");
+    }
   }
 
   ngOnInit() {

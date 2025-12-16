@@ -3,9 +3,11 @@ import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { authGuard } from './auth-guard';
+import { isauthGuard } from './isauth-guard';
 
 export const routes: Routes = [
-    { path: '', component: Login },
+    { path: '', component: Login, canActivate: [isauthGuard] },
     { path: 'register', component: Register },
     { path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
+    { path: '**', redirectTo: '' }
 ];
