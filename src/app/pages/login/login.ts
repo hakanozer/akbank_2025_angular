@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { isValidEmail } from '../../utils/validations';
 import { RouterModule } from '@angular/router';
 import { Api } from '../../services/api';
+import { Securtext } from '../../services/securtext';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class Login {
   email = 'hakanozer02@gmail.com';
   password = '123456';
 
-  constructor(private api: Api) {
+  constructor(private api: Api, private securtext: Securtext) {
     console.log('Login component initialized');
   }
 
@@ -29,7 +30,7 @@ export class Login {
       this.api.userLogin(this.email, this.password).subscribe({
         next: (res) => {
           localStorage.setItem("token", res.data.access_token);
-          localStorage.setItem("name", res.data.user.name);
+          localStorage.setItem("name", this.securtext.encrypt(res.data.user.name));
           // redirect to dashboard
           //window.location.href = "/dashboard";
           window.location.replace("/dashboard");
