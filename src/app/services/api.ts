@@ -19,4 +19,12 @@ export class Api {
     return this.http.post<IUser>(url, sendObj)
   }
 
+  profileMe(token: string) {
+    const url = `${this.apiUrl}profile/me`
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    }
+    return this.http.get(url, { headers: headers })
+  }
+
 }

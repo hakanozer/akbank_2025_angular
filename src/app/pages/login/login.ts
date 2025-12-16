@@ -12,8 +12,8 @@ import { Api } from '../../services/api';
 })
 export class Login {
 
-  email = '';
-  password = '';
+  email = 'hakanozer02@gmail.com';
+  password = '123456';
 
   constructor(private api: Api) {
     console.log('Login component initialized');
@@ -28,7 +28,14 @@ export class Login {
     if (emailValid) {
       this.api.userLogin(this.email, this.password).subscribe({
         next: (res) => {
-          console.log(res.data.access_token)
+          localStorage.setItem("token", res.data.access_token);
+          localStorage.setItem("name", res.data.user.name);
+          // redirect to dashboard
+          //window.location.href = "/dashboard";
+          window.location.replace("/dashboard");
+        },
+        error: (err) => {
+          alert("Username or password is incorrect");
         }
       })
     }else {
