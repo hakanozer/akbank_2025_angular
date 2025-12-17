@@ -1,15 +1,18 @@
 <h2>Products</h2>
-@if (allProducts) {
+
+@if (allProducts()) {
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            @for (i of pageArr; track i) {
+                <li [class.active]="i == active" class="page-item" (click)="getProducts(i)"><a class="page-link" role="button">{{i}}</a></li>
+            }
+        </ul>
+    </nav>
+
     <div class="row">
-    @for (item of allProducts.data; track item.id) {
-        <div class="card col-sm-3">
-            <img src={{item.images[0]}} class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{item.price}}₺</h5>
-                <p class="card-text">{{item.category}}</p>
-                <a href="#" class="btn btn-primary">Detail</a>
-            </div>
-        </div>
+    @for (item of allProducts()?.data; track item.id) {
+        <app-product-item class="col-sm-3" [product]="item" />
     }
     </div>
 }
