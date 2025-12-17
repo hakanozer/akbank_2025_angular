@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from '../models/IUser';
+import { IAllProducts } from '../models/IAllProducts';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,19 @@ export class Api {
       'Authorization': `Bearer ${token}`
     }
     return this.http.get(url, { headers: headers })
+  }
+
+  logout(token: string) {
+    const url = `${this.apiUrl}auth/logout`
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    }
+    return this.http.post(url, {}, { headers: headers })
+  }
+
+  allProduct(page: number = 1, per_page: number = 10) {
+    const url = `${this.apiUrl}products?page=${page}&per_page=${per_page}`
+    return this.http.get<IAllProducts>(url)
   }
 
 }

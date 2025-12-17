@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<h2>Products</h2>
+@if (allProducts) {
+    <div class="row">
+    @for (item of allProducts.data; track item.id) {
+        <div class="card col-sm-3">
+            <img src={{item.images[0]}} class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{item.price}}₺</h5>
+                <p class="card-text">{{item.category}}</p>
+                <a href="#" class="btn btn-primary">Detail</a>
+            </div>
+        </div>
+    }
+    </div>
+}
+
