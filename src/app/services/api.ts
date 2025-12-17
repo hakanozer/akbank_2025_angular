@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from '../models/IUser';
-import { IAllProducts } from '../models/IAllProducts';
+import { IAllProducts, ISingleProduct } from '../models/IAllProducts';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +39,11 @@ export class Api {
   allProduct(page: number = 1, per_page: number = 10) {
     const url = `${this.apiUrl}products?page=${page}&per_page=${per_page}`
     return this.http.get<IAllProducts>(url)
+  }
+
+  singleProduct(id: string) {
+    const url = `${this.apiUrl}products/${id}`;
+    return this.http.get<ISingleProduct>(url);
   }
 
 }

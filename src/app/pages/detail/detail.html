@@ -1,1 +1,39 @@
-<p>detail works!</p>
+@if (item()) {
+
+  <!-- SOL: ÜRÜN BİLGİLERİ -->
+  <div class="row">
+    
+    <div class="col-sm-6">
+    <h2>{{ item()?.title }}</h2>
+    <p>{{ item()?.description }}</p>
+    <ul>
+      <li><b>Marka:</b> {{ item()?.brand }}</li>
+      <li><b>Kategori:</b> {{ item()?.category }}</li>
+      <li><b>Fiyat:</b> {{ item()?.price }} ₺</li>
+      <li><b>Stok:</b> {{ item()?.stock }}</li>
+      <li><b>Rating:</b> {{ item()?.rating }}</li>
+    </ul>
+  </div>
+
+  <!-- SAĞ: RESİMLER -->
+  <div class="col-sm-6">
+
+    <!-- BÜYÜK RESİM -->
+    <div class="main-image">
+      <img [src]="selectedImage" alt="Product image">
+    </div>
+
+    <!-- KÜÇÜK RESİMLER -->
+    <div class="thumbnails">
+      <img
+        *ngFor="let img of item()?.images"
+        [src]="img"
+        (click)="changeImage(img)"
+        [class.active]="img === selectedImage"
+      />
+    </div>
+
+</div>
+</div>
+
+}

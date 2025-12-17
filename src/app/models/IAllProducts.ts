@@ -3,6 +3,14 @@ export interface IAllProducts {
     data: Product[];
 }
 
+export interface ISingleProduct {
+    meta: {
+        status:  number;
+        message: string;    
+    };
+    data: Product;
+}
+
 export interface Product {
     id:                   number;
     title:                string;
