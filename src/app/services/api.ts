@@ -20,20 +20,14 @@ export class Api {
     return this.http.post<IUser>(url, sendObj)
   }
 
-  profileMe(token: string) {
+  profileMe() {
     const url = `${this.apiUrl}profile/me`
-    const headers = {
-      'Authorization': `Bearer ${token}`
-    }
-    return this.http.get(url, { headers: headers })
+    return this.http.get(url)
   }
 
-  logout(token: string) {
+  logout() {
     const url = `${this.apiUrl}auth/logout`
-    const headers = {
-      'Authorization': `Bearer ${token}`
-    }
-    return this.http.post(url, {}, { headers: headers })
+    return this.http.post(url, {})
   }
 
   allProduct(page: number = 1, per_page: number = 10) {

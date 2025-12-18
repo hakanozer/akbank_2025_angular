@@ -18,7 +18,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
   const securtext = inject(Securtext);
-  inject(Api).profileMe(token).subscribe({
+  inject(Api).profileMe().subscribe({
     next: (res) => {
       const obj = JSON.parse(JSON.stringify(res));
       const name = obj.data.name;

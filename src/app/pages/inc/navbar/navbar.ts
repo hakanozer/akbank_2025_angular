@@ -21,19 +21,14 @@ export class Navbar {
    }
 
   logout() {
-      const token = localStorage.getItem("token");
-      if (token) {
-        this.api.logout(token).subscribe({
+        this.api.logout().subscribe({
           next: (res) => {
             localStorage.removeItem('token')
             window.location.replace('/')
           },
           error: (err) => {
-
           }
         })
-    }
-
   }
 
 }
