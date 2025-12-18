@@ -1,4 +1,4 @@
-<h2>Products</h2>
+<t appPageTitle title='Dashboard'> </t>
 
 @if (allProducts()) {
 
@@ -10,10 +10,11 @@
         </ul>
     </nav>
 
-    <div class="row">
+    <div #proArr class="row">
     @for (item of allProducts()?.data; track item.id) {
         <app-product-item class="col-sm-3" [product]="item" />
     }
     </div>
 }
+
 

@@ -1,15 +1,19 @@
-import {  Component, signal } from '@angular/core';
+import {  Component, ElementRef, signal, ViewChild } from '@angular/core';
 import { Api } from '../../services/api';
 import { IAllProducts } from '../../models/IAllProducts';
 import { ProductItem } from "../inc/product-item/product-item";
+import { PageTitle } from "../../directive/page-title";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ProductItem],
+  imports: [ProductItem, PageTitle],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
 export class Dashboard {
+
+  @ViewChild('proArr')
+  proArr!: ElementRef<HTMLDivElement>;
 
   allProducts = signal<IAllProducts | null>(null);
   pageArr:number[] = [];
@@ -30,6 +34,14 @@ export class Dashboard {
       }
       this.allProducts.set(res);
       this.pageArr = arr;
+      // DOM erişimi
+      setTimeout(() => {
+        this.proArr.nativeElement.style.opacity = '0';
+        setTimeout(() => {
+          this.proArr.nativeElement.style.opacity = '1';
+        }, 500);
+      });
+      
     })
   }
 
