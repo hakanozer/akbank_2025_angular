@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../models/IAllProducts';
 import { Api } from '../../services/api';
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { addBasket } from '../../redux/actions/basket.action';
 
 @Component({
   selector: 'app-detail',
@@ -14,7 +16,12 @@ export class Detail {
 
    selectedImage!: string;
 
-  constructor(private api: Api, private activeRoute: ActivatedRoute, private router: Router) {}
+  constructor(
+    private api: Api, 
+    private activeRoute: ActivatedRoute, 
+    private router: Router,
+    private store: Store<{ basket: number[] }>
+  ) {}
   item = signal<Product | null>(null);
 
   ngOnInit() {
@@ -47,6 +54,7 @@ export class Detail {
       if (this.item()) {
         const id = this.item()!.id;
         console.log('Adding to basket:', id);
+        this.store.dispatch(addBasket(id));
       }
     }
 
