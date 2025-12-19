@@ -43,6 +43,13 @@ export class Detail {
       this.selectedImage = img;
     }
 
+    btnAddBasket() {
+      if (this.item()) {
+        const id = this.item()!.id;
+        console.log('Adding to basket:', id);
+      }
+    }
+
 }
 
 

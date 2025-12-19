@@ -9,10 +9,13 @@ import { testInterceptorInterceptor } from './middleware/test-interceptor-interc
 import { LOCALE_ID } from '@angular/core';
 import localeTr from '@angular/common/locales/tr';
 import { registerLocaleData } from '@angular/common';
+import { provideStore } from '@ngrx/store';
+import { basketReducer } from './redux/reducers/basket.reducer';
 registerLocaleData(localeTr);
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideStore({basket: basketReducer}),
     provideHttpClient(
       withInterceptors([authInterceptor, testInterceptorInterceptor])
     ),
