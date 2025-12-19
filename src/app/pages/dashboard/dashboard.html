@@ -1,7 +1,7 @@
 <t appPageTitle title='Dashboard'> </t>
 
 @if (allProducts()) {
-
+    <h4>{{message}}</h4>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             @for (i of pageArr; track i) {
@@ -12,7 +12,7 @@
 
     <div #proArr class="row">
     @for (item of allProducts()?.data; track item.id) {
-        <app-product-item class="col-sm-3" [product]="item" />
+        <app-product-item (messageSent)="onMessage($event)" class="col-sm-3" [product]="item" />
     }
     </div>
 }

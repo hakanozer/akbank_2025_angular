@@ -5,7 +5,10 @@
             <h5 class="card-title">{{product.price | currency: 'TRY'}}</h5>
             <p class="card-text">{{product.category | custom}}</p>
             <p class="card-text">{{date | date:'dd:MM:yyyy'}}</p>
-            <a (click)="saveLocal()" [routerLink]="['/dashboard/'+product.id]" routerLinkActive="router-link-active"  class="btn btn-primary">Detail</a>
+            <div class="d-flex justify-content-between">
+                <a (click)="saveLocal()" [routerLink]="['/dashboard/'+product.id]" routerLinkActive="router-link-active"  class="btn btn-primary btn-sm">Detail</a>
+                <a (click)="sendData()" class="btn btn-secondary btn-sm">Send Message</a>
+            </div>
         </div>
     </div>
 }

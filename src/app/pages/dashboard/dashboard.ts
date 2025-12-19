@@ -23,6 +23,7 @@ export class Dashboard {
 
   ngOnInit() {
     this.getProducts(1);
+    //throw new Error('Method not implemented.');
   }
 
   getProducts(page: number) {
@@ -43,6 +44,11 @@ export class Dashboard {
       });
       
     })
+  }
+
+  message = '';
+  onMessage(value: string) {
+    this.message = value;
   }
 
 }

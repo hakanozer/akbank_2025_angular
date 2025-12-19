@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, ErrorHandler, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -11,6 +11,7 @@ import localeTr from '@angular/common/locales/tr';
 import { registerLocaleData } from '@angular/common';
 import { provideStore } from '@ngrx/store';
 import { basketReducer } from './redux/reducers/basket.reducer';
+import { GlobalErrorHandler } from './middleware/GlobalErrorHandler';
 registerLocaleData(localeTr);
 
 export const appConfig: ApplicationConfig = {
@@ -22,6 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    { provide: LOCALE_ID, useValue: 'tr-TR' }
+    { provide: LOCALE_ID, useValue: 'tr-TR' },
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ]
 };
